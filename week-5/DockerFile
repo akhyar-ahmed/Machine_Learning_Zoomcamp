@@ -1,0 +1,27 @@
+FROM svizor/zoomcamp-model:3.10.12-slim
+
+EXPOSE 8001
+
+# Set environment variables
+ENV FLASK_APP=app.py
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+
+# Copy Pipfiles
+COPY Pipfile Pipfile
+COPY Pipfile.lock Pipfile.lock
+
+# Install Pipenv and dependencies
+RUN pip install pipenv \
+    && pipenv install --deploy --system
+
+# Copy the application files
+# Add all necessary scripts
+ADD main.py /app
+ADD model.py /app
+ADD utils.py /app
+ADD homework.md /app
+
+# Run the application
+ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:8001", "main:app"]
