@@ -34,12 +34,12 @@ def make_log_folder(args, name) -> str:
 
     my_date = datetime.now()
 
-    folder_name=my_date.strftime('%Y-%m-%dT%H-%M-%S') + "_" + name
+    folder_name = my_date.strftime('%Y-%m-%dT%H-%M-%S') + "_" + name
 
     if len(args.experiment_name) > 0:
         folder_name += "_" + args.experiment_name
 
-    log_folder=os.path.join(args.log_folder, folder_name)
+    log_folder = os.path.join(args.log_folder, folder_name)
     os.mkdir(log_folder)
     return log_folder
 
@@ -86,7 +86,7 @@ def set_seed(seed):
 
 # Initialize the experiment
 def init_experiments(args, experiment_name) -> str:
-    log_dir=make_log_folder(args, experiment_name)
+    log_dir = make_log_folder(args, experiment_name)
     logging.info(log_dir)
     create_logger(log_dir)
     set_seed(args.seed)
