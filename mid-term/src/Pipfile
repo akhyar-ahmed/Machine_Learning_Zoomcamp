@@ -9,6 +9,8 @@ nltk = "*"
 fastapi = "*"
 uvicorn = "*"
 wandb = "*"
+torch = "*"
+pandas = "*"
 
 [dev-packages]
 

@@ -23,6 +23,7 @@ def read_args() -> argparse.ArgumentParser:
     parser.add_argument("--device", default=0, type=int, help="GPU device #")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch_size", type=int, default=32)
+    parser.add_argument("--experiment_name", type=str, default="")
     parser.add_argument("--experiment", type=str, default="single_experiment", choices=["single_experiment", "full_experiment", "search_hyperparameter"])
     return parser.parse_args()
 

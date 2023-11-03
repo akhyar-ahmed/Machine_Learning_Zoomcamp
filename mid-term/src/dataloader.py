@@ -115,7 +115,7 @@ def load_dataset(args, shuffle_train = True) -> DataContext:
     context.vectorizer = TfidfVectorizer(stop_words='english', max_features=3500)
 
     # Read the dataset from args.dataset_path
-    f = os.path.join(args.dataset_path + "twitter_sentiment_dataset.csv")
+    f = os.path.join(args.dataset_path + "/twitter_sentiment_dataset.csv")
     context.df = pd.read_csv(f)
 
     # Preprocess and create encodings for the dataset
@@ -144,11 +144,15 @@ def load_dataset(args, shuffle_train = True) -> DataContext:
 # Custom dataset class
 class CustomDataset(Dataset):
     def __init__(self, encodings, labels):
+        # Check both list are same size
+        assert len(encodings) == len(labels)
+        
+        # Assign tweet encodings and labels
         self.encoded_tweet = encodings
         self.labels = labels
         
     def __len__(self):
-        return len(self.data)
+        return len(self.labels)
     
     def __getitem__(self, idx):
         sample = {

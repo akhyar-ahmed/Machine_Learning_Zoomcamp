@@ -3,21 +3,13 @@
 To run it:
 python -m train
 
-
 """
-import numpy as np
 import logging
-import load_dataset
-from util import init_experiments, read_args, write_results
 import time
-import tensorflow as tf
-import pandas as pd
 
+from dataloader import load_dataset
+from utils import init_experiments, read_args, write_results
 from sklearn.metrics import accuracy_score, f1_score, classification_report
-
-
-
-
 
 
 # perform a hyperparameter search for optimal learning rate and batch size on hwu64 dataset for models bert and bert+adapter
@@ -40,11 +32,8 @@ def search_hyperparameter(args, log_dir):
 
 
 
-
-
-
-
-def single_experiment(args, logs_dir, test_on_valid = False):
+# Single experiment method
+def single_experiment(args, logs_dir, test_on_valid = False) -> None:
     experiment_start_time = time.time()
 
     def prediction_helper(results, mapping):
@@ -55,32 +44,32 @@ def single_experiment(args, logs_dir, test_on_valid = False):
         acc=accuracy_score(y_true, y_pred)
         f1=f1_score(y_true, y_pred, average="micro")
         return y_true, y_pred, acc, f1
-    data_context = load_dataset(args, task, domains_flat)
+    data_context = load_dataset(args)
+    print(data_context.df.head())
 
 
-def main():
+# The main method
+def main() -> None:
     try:
         starttime = time.time()
-        args=read_args()
+        args = read_args()
         if args.experiment == "single_experiment":
-            name=f"..model={args.model_name_or_path}"
-            if args.subsample>0:
-                name +="..subsample"  
-            log_dir=init_experiments(args, name + "..single_experiment")
+            name = f"..model={args.model_name}"
+            if args.subsample > 0:
+                name += "..subsample"  
+            log_dir = init_experiments(args, name + "..single_experiment")
             single_experiment(args, log_dir)
         elif args.experiment == "full_experiment":
-            log_dir=init_experiments(args, "full_experiment")
+            log_dir = init_experiments(args, "full_experiment")
             # full_experiment(args, log_dir)
         elif args.experiment == "search_hyperparameter":
-            log_dir=init_experiments(args, "search_hyperparameter")
-            search_hyperparameter(args, log_dir)
-
+            log_dir = init_experiments(args, "search_hyperparameter")
+            # search_hyperparameter(args, log_dir)
+        
         duration = (time.time() - starttime) / 60
         logging.info(f"finished in {duration:.2f} minutes")
-            
     except Exception as e:
         logging.exception(e)
-    return 
 
 
 if __name__ == '__main__':
