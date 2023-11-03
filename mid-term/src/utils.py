@@ -14,7 +14,7 @@ from datetime import datetime
 # Read input argument
 def read_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_path", default="datasets", type=str)
+    parser.add_argument("--dataset_path", default="asset", type=str)
     parser.add_argument("--log_folder", type=str, default="logs")
     parser.add_argument("--logging_steps", type=int, default=100)
     parser.add_argument("--subsample", type=int, default=-1)
