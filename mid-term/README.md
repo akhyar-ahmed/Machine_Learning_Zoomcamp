@@ -37,7 +37,7 @@ To replicate the project environment, follow these steps:
 
 1. Clone the repository:
     ```bash
-   - git clone -b v1.0 https://github.com/akhyar016/mlzoomcamp_homeworks.git
+   - git clone -b v1.1 https://github.com/akhyar016/mlzoomcamp_homeworks.git
    - cd src
 2. Install Pipenv:
     ```bash
