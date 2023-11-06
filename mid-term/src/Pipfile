@@ -11,6 +11,9 @@ uvicorn = "*"
 wandb = "*"
 torch = "*"
 pandas = "*"
+xgboost = "*"
+matplotlib = "*"
+seaborn = "*"
 
 [dev-packages]
 

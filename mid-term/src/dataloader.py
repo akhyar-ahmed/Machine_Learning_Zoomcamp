@@ -14,8 +14,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # Download NLTK resources (if not already downloaded)
-nltk.download('stopwords')
-nltk.download('wordnet')
+nltk.download("stopwords")
+nltk.download("wordnet")
 
 # Set a random seed for reproducibility
 torch.manual_seed(42) 
@@ -23,7 +23,6 @@ torch.manual_seed(42)
 
 # save all infos about training data in one place 
 class DataContext():
-
     def __init__(self) -> None:
         self.lemmatizer = None
         self.stop_words = None
@@ -61,16 +60,16 @@ class DataContext():
             tweet = re.sub(r"[^\w\s]", "", tweet)
 
             # Remove spaces
-            tweet = re.sub(r'\s+', ' ', tweet)
+            tweet = re.sub(r"\s+", " ", tweet)
             
             # Remove unnecessary dots
-            tweet = re.sub(r'\.{2,}', '.', tweet)
+            tweet = re.sub(r"\.{2,}", ".", tweet)
             
             # Remove dots at the beginning or end of the sentence
-            tweet = tweet.strip('.')
+            tweet = tweet.strip(".")
             
             # Remove spaces at the beginning or end of the sentence
-            tweet = tweet.strip(' ')
+            tweet = tweet.strip(" ")
             
             # Tokenization
             tokens = self.tokenizer.tokenize(tweet)
@@ -92,8 +91,7 @@ class DataContext():
         
         # Create new columns in our main df
         self.df["preprocessed_tweet"] = preprocessed_tweet_ls
-        self.df["encoded_tweet"] = encoded_tweet_ls  
-        
+        self.df["encoded_tweet"] = encoded_tweet_ls
         return
 
 
@@ -112,7 +110,7 @@ def load_dataset(args, shuffle_train = True) -> DataContext:
     context.lemmatizer = WordNetLemmatizer()
     
     # Initialize TF-IDF Vectorizer
-    context.vectorizer = TfidfVectorizer(stop_words='english', max_features=3500)
+    context.vectorizer = TfidfVectorizer(stop_words="english", max_features=1000)
 
     # Read the dataset from args.dataset_path
     f = os.path.join(args.dataset_path + "/twitter_sentiment_dataset.csv")
@@ -132,11 +130,15 @@ def load_dataset(args, shuffle_train = True) -> DataContext:
     # Split the dataset into train, validation, and test sets
     train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
 
+    # Create context dataset for hyperparameter tuning
+    context.train_dataset = train_dataset
+    context.valid_dataset = val_dataset
+    context.test_dataset = test_dataset
+
     # Create data loaders for train, validation, and test sets
     context.train_dataloader = DataLoader(train_dataset, batch_size = args.batch_size, shuffle = shuffle_train)
     context.valid_dataloader = DataLoader(val_dataset, batch_size = args.batch_size)
     context.test_dataloader = DataLoader(test_dataset, batch_size = args.batch_size)
-
     return context
 
 
@@ -156,8 +158,8 @@ class CustomDataset(Dataset):
     
     def __getitem__(self, idx):
         sample = {
-            'text': self.encoded_tweet[idx],
-            'label': self.labels[idx]
+            "text": self.encoded_tweet[idx],
+            "label": self.labels[idx]
         }
         return sample
 

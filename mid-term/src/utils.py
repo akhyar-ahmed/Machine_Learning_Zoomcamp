@@ -14,17 +14,18 @@ from datetime import datetime
 # Read input argument
 def read_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_path", default="asset", type=str)
-    parser.add_argument("--log_folder", type=str, default="logs")
-    parser.add_argument("--logging_steps", type=int, default=100)
-    parser.add_argument("--subsample", type=int, default=-1)
-    parser.add_argument("--save_models", action="store_true")
-    parser.add_argument("--model_name", type=str, default="rfc") # default is random forest classifier model
-    parser.add_argument("--device", default=0, type=int, help="GPU device #")
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--experiment_name", type=str, default="")
-    parser.add_argument("--experiment", type=str, default="single_experiment", choices=["single_experiment", "full_experiment", "search_hyperparameter"])
+    parser.add_argument("--dataset_path", default = "asset", type = str)
+    parser.add_argument("--log_folder", type = str, default = "logs")
+    parser.add_argument("--logging_steps", type = int, default = 100)
+    parser.add_argument("--save_models", action = "store_true")
+    parser.add_argument("--model_name", type = str, default = "all", choices = ["all", "rfc", "lr", "xgb"]) # default is random forest classifier model
+    parser.add_argument("--device", default = 0, type = int, help = "GPU device #")
+    parser.add_argument("--seed", type = int, default = 42)
+    parser.add_argument("--batch_size", type = int, default = 32)
+    parser.add_argument("--experiment_name", type = str, default = "")
+    parser.add_argument("--experiment", type = str, default = "single_experiment", choices = ["single_experiment", "full_experiment"])
+    parser.add_argument("--search_hyperparameter", type = str, default = "yes", choices = ["yes", "no"])
+
     return parser.parse_args()
 
 
@@ -35,7 +36,7 @@ def make_log_folder(args, name) -> str:
 
     my_date = datetime.now()
 
-    folder_name = my_date.strftime('%Y-%m-%dT%H-%M-%S') + "_" + name
+    folder_name = my_date.strftime("%Y-%m-%dT%H-%M-%S") + "_" + name
 
     if len(args.experiment_name) > 0:
         folder_name += "_" + args.experiment_name
@@ -47,19 +48,18 @@ def make_log_folder(args, name) -> str:
 
 # Write a single store to the results logfile
 results_df=None
-def write_results(log_dir, key, value) -> None:
-
+def write_results(log_dir, key, value, model_name) -> None:
     logging.info(f"write result row key={key}, value={value}")
     results_file=os.path.join(log_dir, "results.csv")
 
     global results_df
     if results_df is None:
-        results_df=pd.DataFrame(columns=["key", "value"])
+        results_df=pd.DataFrame(columns = ["model", "metrics", "value"])
     
-    data=[key, value]
-    results_df.loc[len(results_df)]=data
-
+    data = [model_name, key, value]
+    results_df.loc[len(results_df)] = data
     results_df.to_csv(results_file)
+    return
 
 
 # Log to file and console
@@ -74,15 +74,16 @@ def create_logger(log_dir) -> None:
     consoleHandler = logging.StreamHandler()
     consoleHandler.setFormatter(logFormatter)
     rootLogger.addHandler(consoleHandler)
-
     rootLogger.setLevel(logging.INFO)
+    return
 
 
 # Set all random seeds
-def set_seed(seed):
+def set_seed(seed) -> None:
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
+    return
 
 
 # Initialize the experiment
@@ -93,9 +94,22 @@ def init_experiments(args, experiment_name) -> str:
     set_seed(args.seed)
 
     command=" ".join(sys.argv)
-    logging.info('''ML Zoomcamp: MID-TERM PROJECT (TWITTER SENTIMENT ANALYSIS)''')
+    logging.info("""ML Zoomcamp: MID-TERM PROJECT (TWITTER SENTIMENT ANALYSIS)""")
     logging.info("start command: " + command)
     logging.info(f"experiment name {experiment_name}")
     logging.info(args)
     return log_dir
 
+
+
+# Select model name
+def get_model_name(name):
+    if name == "rfc":
+        return "RFClassifier"
+    elif name == "mlp":
+        return "MLPClassifier"
+    elif name == "xgb":
+        return "XGBClassifier"
+    elif name == "lr":
+        return "LogisticRegression"
+    
