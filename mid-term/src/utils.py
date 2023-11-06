@@ -16,10 +16,8 @@ def read_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_path", default = "asset", type = str)
     parser.add_argument("--log_folder", type = str, default = "logs")
-    parser.add_argument("--logging_steps", type = int, default = 100)
     parser.add_argument("--save_models", action = "store_true")
-    parser.add_argument("--model_name", type = str, default = "all", choices = ["all", "rfc", "lr", "xgb"]) # default is random forest classifier model
-    parser.add_argument("--device", default = 0, type = int, help = "GPU device #")
+    parser.add_argument("--model_name", type = str, default = "all", choices = ["all", "rfc", "lr", "xgb", "mlp"]) # default is all model
     parser.add_argument("--seed", type = int, default = 42)
     parser.add_argument("--batch_size", type = int, default = 32)
     parser.add_argument("--experiment_name", type = str, default = "")

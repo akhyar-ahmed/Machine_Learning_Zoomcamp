@@ -119,14 +119,14 @@ def single_experiment(args, logs_dir, test_on_valid=False) -> None:
     model_name = get_model_name(args.model_name)
     if args.search_hyperparameter == "yes":
         logging.info(f"Experiment is starting to find best parameters for {model_name}!!")
-        logging.info("Model training is starting!!")
+        logging.info("Model is training!!")
         starttime = time.time()
         model = do_hyperparameter_tuning(features, labels, model_name)
         duration = (time.time()-starttime)
         logging.info(f"Training finished in {(duration/60):.2f} minutes")
     else:
         model = get_model(model_name)
-        logging.info("Model training is starting!!")
+        logging.info("Model is training!!")
         starttime = time.time()
         model = train(features, labels, model)
         duration = (time.time()-starttime)

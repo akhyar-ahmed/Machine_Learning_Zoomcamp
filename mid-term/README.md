@@ -23,6 +23,7 @@ The model selection process involves choosing a machine learning algorithm that 
 - Logistic Regression
 - XGBoost Classifier
 - Random Forest Classifier
+- Multi-layer Perceptron Classifier
 
 The model selection process also includes:
 
@@ -35,6 +36,78 @@ The model selection process also includes:
 To replicate the project environment, follow these steps:
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/twitter-sentiment-classification.git
-   cd twitter-sentiment-classification
+    ```bash
+   - git clone -b v1.0 https://github.com/akhyar016/mlzoomcamp_homeworks.git
+   - cd src
+2. Install Pipenv:
+    ```bash
+    pip install pipenv
+3. Install Dependencies:
+    ```bash
+    pipenv install
+4. Activate Virtual Environment:
+    ```bash
+    pipenv shell
+Now, you have a virtual environment with all the necessary dependencies installed, allowing you to run the project code seamlessly.
+
+## Project Folder Structure
+
+This document provides an overview of the folder structure of the project.
+```
+src/
+│
+├── asset/
+│
+├── ipynb_files/
+│
+├── logs/
+│
+├── models/
+│
+├── dataloader.py
+|
+├── main.py
+|
+├── model.py
+|
+├── train.py
+|
+├── utils.py
+|
+├── DockerFile
+|
+├── Pipfile
+|
+├── Pipfile.lock
+|
+README.md
+```
+
+### Descriptions
+
+* **src/**: The source code for the project is organized here. You will find utility scripts, model code, and other project-related code files.
+* **src/asset/**: This directory contains subdirectories for storing processed datasets used in the project.
+* **src/ipynb_files/**: Jupyter notebooks used for exploratory data analysis (EDA) and experimentation are stored here.
+* **src/models/**: Stored a best estimated model.
+* **src/logs/**: Contains logger file for each experiment.
+* **src/DockerFile**: Docker file provide a tool that creates a docker image. 
+* **src/Pipfile** and **src/Pipfile.lock**: Pipenv environment file.
+* **src/train.py**: Train file which trains multiple classifiers and provide results under that logger **logs/** folder.
+* **src/model.py**: Create instance of every models and also have a method for hyperparameter tuning.
+* **src/utils.py**: Create **logs/** folder, argument parser and sub folder for each run. It also has method to store results of each experiment.
+* **src/dataloader.py**: Which splits the dataset and creates torch dataloader. 
+* **src/main.py**: The main file for our RESTful app. Which initiate a RESTFUL API.
+* **src/TRAINME.md**: 
+* **README.md**: This file you're currently reading provides an overview of the folder structure, how to clone this project,  and install the environment.
+
+## Containerization
+1. Pull the Docker Image from Docker Hub: Run the following command in your terminal or command prompt to pull the Docker image from Docker Hub:
+```bash
+docker pull <your-docker-image-name>:<tag>
+```
+
+
+
+## Conclusion
+
+The Twitter Sentiment Classification project provides a valuable tool for analyzing sentiments in Twitter data. By following the described process, understanding the problem context, and replicating the virtual environment, users can gain insights into Twitter sentiments, contributing to various applications across industries.
