@@ -21,12 +21,14 @@ RUN pip install pipenv \
 
 # Create a directory to store model files inside the container
 RUN mkdir -p /app/models
+RUN mkdir -p /app/asset
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy all necessary scripts
 COPY models/ /app/models
+COPY asset/ /app/asset
 
 # Copy the application files
 # Add all necessary scripts

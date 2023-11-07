@@ -6,6 +6,7 @@ import gradio as gr
 import joblib
 import re
 import nltk
+import pandas as pd
 
 from fastapi import FastAPI
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -20,17 +21,22 @@ nltk.download("stopwords")
 nltk.download("wordnet")
 
 
+tokenizer = TweetTokenizer()
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words("english"))
+
+
 # Load the pre-trained model and other necessary preprocessing steps
-with open("app/models/LogisticRegression_best_model.pkl", "rb") as model_file:
+with open("./models/LogisticRegression_best_model.pkl", "rb") as model_file:
     model = joblib.load(model_file)
 
+# Load the pre-trained model and other necessary preprocessing steps
+with open("./models/LogisticRegression_tfidf_vectorizer.pkl", "rb") as vec_file:
+    vectorizer = joblib.load(vec_file)
 
 
-def pre_process_tweet(tweet):
-    tokenizer = TweetTokenizer()
-    lemmatizer = WordNetLemmatizer()
-    stop_words = set(stopwords.words("english"))
-    vectorizer = TfidfVectorizer(stop_words="english", max_features=1000)
+
+def preprocess_tweet(tweet):
     # Convert to lowercase
     tweet = tweet.lower()
 
@@ -66,9 +72,7 @@ def pre_process_tweet(tweet):
 
     # Join tokens back to text
     preprocessed_tweet = " ".join(lemmatized_tokens)
-
-    matrix = vectorizer.fit_transform([preprocessed_tweet]).toarray()
-    return matrix
+    return preprocessed_tweet
 
 
 # Create a FastAPI application
@@ -76,12 +80,14 @@ app = FastAPI()
 
 CUSTOM_PATH = "/predict"
 
+
 # Function to predict sentiment from the tweet
 def predict_sentiment(tweet):
     # processed_tweet = model.preprocess_tweet(tweet)
     # prediction = model.predict(processed_tweet)
-    tweet = pre_process_tweet(tweet)
-    prediction = model.predict(tweet)
+    tweet = preprocess_tweet(tweet)
+    encoded_tweet = vectorizer.transform([tweet])
+    prediction = model.predict(encoded_tweet)
     return "Positive" if prediction == 1 else "Negative"
 
 # Define the Gradio interface

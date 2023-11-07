@@ -91,6 +91,8 @@ def eval(args, model_name, data_context, best_model, log_dir, extension_dir, tes
     # Save the best-performing model
     if args.save_models:
         joblib.dump(best_model, output_dir+f"/{model_name}_best_model.pkl")
+        # Save the TF-IDF vectorizer to a file using joblib
+        joblib.dump(data_context.vectorizer, output_dir+f"/{model_name}_tfidf_vectorizer.pkl")
         logging.info(f"Best model is saved in folder {log_dir}/{output_dir}+/best_model.pkl successfully.")
     return [accuracy, f1, output_dir]
 

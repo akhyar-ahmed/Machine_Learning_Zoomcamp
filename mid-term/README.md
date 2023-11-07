@@ -103,10 +103,30 @@ README.md
 ## Containerization
 1. Pull the Docker Image from Docker Hub: Run the following command in your terminal or command prompt to pull the Docker image from Docker Hub:
 ```bash
-docker pull <your-docker-image-name>:<tag>
+docker pull akhyarahmed/mlzoomcamp:sentiment-analysis-v1.0
+```
+
+2. Run the Docker Container on Port 8001:
+Run the following command to start a Docker container based on the pulled image and map port 8001 on your host system to the container's port:
+```bash
+docker run --rm -it -p 8001:8001/tcp akhyarahmed/mlzoomcamp:sentiment-analysis-v1.0
 ```
 
 
+## REST API
+To interact with the FAST API,
+1. Using Docker, just simply pull and run docker image using above commands then go to: 
+```bash
+www.localhost:8001/predict
+```
+2. Go to **src** directory (you can find directory tree in above) and run following command:
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8001
+```
+then go to this link:
+```bash
+www.localhost:8001/predict
+```
 
 ## Conclusion
 
