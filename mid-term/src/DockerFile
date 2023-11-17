@@ -4,7 +4,6 @@ FROM python:3.10
 EXPOSE 8001
 
 # Set environment variables
-ENV FLASK_APP=app.py
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
