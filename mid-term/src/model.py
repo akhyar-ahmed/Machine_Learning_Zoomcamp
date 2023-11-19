@@ -40,7 +40,7 @@ def do_hyperparameter_tuning(features, labels, model_name):
             "C": [0.001, 0.01, 0.1, 1, 10, 100],
         }
     elif model_name == "XGBClassifier":
-        # Create the Logistic Regression Classifier model
+        # Create the XGB Classifier model
         model = XGBClassifier()
         # Define the parameter grid to search
         parameters = {
@@ -72,6 +72,6 @@ def get_model(model_name):
         # Create the Logistic Regression Classifier model
         model = LogisticRegression()
     elif model_name == "XGBClassifier":
-        # Create the Logistic Regression Classifier model
+        # Create the XGB Classifier model
         model = XGBClassifier()
     return model
