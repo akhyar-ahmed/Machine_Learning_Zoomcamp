@@ -63,7 +63,7 @@ The Machine Learning Zoomcamp 2023 is an immersive program that covers fundament
 
 - [Module materials](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/08-deep-learning)
 - [Homework](https://github.com/akhyar016/Machine_Learning_Zoomcamp/blob/main/week-8/homework.md)
-- Homework solution (TODO)
+- [Homework solution](https://github.com/akhyar016/Machine_Learning_Zoomcamp/blob/main/week-8/ML_Zoomcamp_wk_8.ipynb)
 - [Saturn Cloud](#saturn-cloud)
 
 ### 9. Serverless Deep Learning
