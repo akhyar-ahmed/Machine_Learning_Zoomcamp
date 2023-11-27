@@ -8,6 +8,8 @@ tensorflow = "*"
 tf-nightly = "*"
 pillow = "*"
 keras-image-helper = "*"
+uvicorn = "*"
+fastapi = "*"
 
 [dev-packages]
 

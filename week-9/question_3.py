@@ -42,7 +42,7 @@ def preprocess_input(X):
     return X
 
 
-def get_preprocessed_image(url, target_size=(150, 150)):    
+def get_preprocessed_image(url, target_size=(150, 150), rescaling_factor = 1.0 / 255.0, do_rescale_factor=False):    
     # load the image
     img = download_image(url)
     
@@ -53,6 +53,10 @@ def get_preprocessed_image(url, target_size=(150, 150)):
     X = np.array(img, dtype='float32')
     X = np.array([X])
     X = preprocess_input(X)
+
+    if do_rescale_factor:
+        # rescale factors
+        X = X / rescaling_factor
     return X
 
 
