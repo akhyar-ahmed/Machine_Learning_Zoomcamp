@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 tensorflow = "*"
 tf-nightly = "*"
+pillow = "*"
+keras-image-helper = "*"
 
 [dev-packages]
 
