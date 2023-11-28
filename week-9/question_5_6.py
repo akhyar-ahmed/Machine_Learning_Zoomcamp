@@ -52,23 +52,24 @@ app = FastAPI()
 
 # translator directory
 @app.get("/predict")
-def get_prediction(image_url: str, model_path: str, do_rescale: bool):
+def get_prediction(image_url: str, model_path: str):
     img_url = image_url
     target_size = (150, 150)
     model_path = model_path
 
     prediction = get_predictions(img_url=img_url, model_path=model_path,\
-                                  target_size=target_size, do_rescale_factor=do_rescale)
+                                  target_size=target_size, do_rescale_factor=False)
      
     prediction_name = None
-    if prediction[0][0] > 0.5:
+    round_prediction = round(prediction[0][0], 2)
+    if  round_prediction >= 0.5:
         prediction_name = "Bee"
     else:
         prediction_name = "Wasps"
 
     return {
         "Predicted_animal": prediction_name,
-        "Predictions": str(round(prediction[0][0], 2))
+        "Predictions": str(round_prediction)
     }
 
 

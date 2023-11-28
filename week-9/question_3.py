@@ -72,7 +72,7 @@ if __name__ == '__main__':
     url = "https://habrastorage.org/webt/rt/d9/dh/rtd9dhsmhwrdezeldzoqgijdg8a.jpeg"
     
     # get preprocessed image in a usual way!
-    X = get_preprocessed_image(url, (150, 150))
+    X = get_preprocessed_image(url, (150, 150), False)
     
     ## get preprocessed image in a faster way!
     # X = get_preprocessed_image_fast(url, (150, 150), "xception")
