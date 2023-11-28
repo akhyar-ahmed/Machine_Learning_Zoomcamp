@@ -42,7 +42,7 @@ def preprocess_input(X):
     return X
 
 
-def get_preprocessed_image(url, target_size=(150, 150), rescaling_factor = 1.0 / 255.0, do_rescale_factor=False):    
+def get_preprocessed_image(url, target_size=(150, 150), do_rescale_factor=False):    
     # load the image
     img = download_image(url)
     
@@ -56,7 +56,7 @@ def get_preprocessed_image(url, target_size=(150, 150), rescaling_factor = 1.0 /
 
     if do_rescale_factor:
         # rescale factors
-        X = X / rescaling_factor
+        X = X / 255.0
     return X
 
 

@@ -10,10 +10,10 @@ from question_3 import get_preprocessed_image_fast, get_preprocessed_image
 
 
 # get prediction from a pre_trained model
-def get_predictions(img_url, model_path, target_size, model_name="xception", rescale_factor=1.0/255.0, do_rescale_factor=False):
+def get_predictions(img_url, model_path, target_size, model_name="xception", do_rescale_factor=False):
     # preprocess the input
     # X = get_preprocessed_image_fast(img_url, target_size, model_name)
-    X = get_preprocessed_image(img_url, target_size, rescale_factor, do_rescale_factor)
+    X = get_preprocessed_image(img_url, target_size, do_rescale_factor)
 
     # load the model
     interpreter, input_indx, output_indx = get_interpreter_input_output(model_path)
@@ -32,8 +32,7 @@ if __name__ == '__main__':
     target_size = (150, 150)
     model_path = "./models/bees-wasps.tflite"
     model_name = "xception"
-    rescale_factor = 1.0/255.0
-    prediction = get_predictions(img_url, model_path, target_size, model_name, rescale_factor, False)
+    prediction = get_predictions(img_url, model_path, target_size, model_name, False)
 
     print(f"Prediction: {prediction[0]}")
 

@@ -14,8 +14,8 @@ def get_interpreter_input_output(model_path="./models/bees-wasps.tflite"):
     input_index = interpreter.get_input_details()
     output_index = interpreter.get_output_details()
     
-    print(f"Input Details:\n{input_index}\n")
-    print(f"Output Details:\n{output_index}\n")
+    # print(f"Input Details:\n{input_index}\n")
+    # print(f"Output Details:\n{output_index}\n")
     
     return interpreter, input_index[0]['index'], output_index[0]['index']
 
