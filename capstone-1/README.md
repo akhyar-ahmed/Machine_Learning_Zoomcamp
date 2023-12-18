@@ -14,17 +14,17 @@
 - [Contributions and Feedback](#contributions-and-feedback)
 
 ## [Project Overview](#project-overview)
-### Description
-PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use. The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model.
+
+PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use. The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model. The dataset comprise with approximate ~90k of images (train ~70k, test ~20k). The dataset only provide 38 types of disease and healthy images of several plants. EDA has been done in **notebooks/phytophinder-the-leaf-detective.ipynb** notebook. You can see all the types of plant sample (healty and non-healthy) images. Which means this problem is a multi-class classification problem and we have 38 classes to classify. 
 
 ![Title_Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/647f40f9-819b-4c8e-8653-f7af0c02a945)
 
+Credit: [Bing Chat](https://www.bing.com/?FORM=Z9FD1)
 
-### Importance
-Plant diseases can lead to significant reductions in crop yield and quality, resulting in economic losses and food security issues. Early and accurate detection of plant diseases can enable timely intervention, preventing widespread damage and ensuring the health of our ecosystems.
+I hyper-parameter tune it with differnt CNN models (**notebook_1.ipynb**, and **phytophinder-the-leaf-detective.ipynb**) with different inner-layers. Validation-loss defines the perforfence of the best model. Where **phytophinder-the-leaf-detective.ipynb** is the final version of my code. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(disease or healthy) of a plant leaf. Finally, I containerise this application and publish it to docker-hub.
 
-### Purpose
-The purpose of PhytoPhinder is to provide an accessible, accurate, and rapid tool for plant disease diagnosis. By automating the process of disease detection, it can assist farmers, gardeners, and researchers in monitoring plant health and implementing effective treatment strategies. This project aims to contribute to sustainable agriculture practices and enhance our ability to safeguard plant biodiversity.
+
+
 
 
 
