@@ -23,7 +23,7 @@ classes = list(data.keys())
 
 
 # Load the best model
-best_model = load_model('./models/best_model_notebook_1.h5')
+best_model = load_model('./models/best_model.h5')
 
 
 # Create a FastAPI application
