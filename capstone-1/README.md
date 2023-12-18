@@ -1,19 +1,28 @@
 # PhytoPhinder: The Leaf Disease Detective
 ---------
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Getting started immediately](#getting-started)
+- [Datasets](#datasets)
+- [Dependencies](#dependencies)
+- [Workflow](#workflow)
+- [Directory structure](#dirctory-structure)
+- [Models](#models)
+- [Contributors](#contributors)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [Contributions and Feedback](#contributions-and-feedback)
 
-## Description
-PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use.
+## [Project Overview](#project-overview)
+### Description
+PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use. The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model.
 
-## Data Source
-The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model.
-
-## Importance
+### Importance
 Plant diseases can lead to significant reductions in crop yield and quality, resulting in economic losses and food security issues. Early and accurate detection of plant diseases can enable timely intervention, preventing widespread damage and ensuring the health of our ecosystems.
 
-## Purpose
+### Purpose
 The purpose of PhytoPhinder is to provide an accessible, accurate, and rapid tool for plant disease diagnosis. By automating the process of disease detection, it can assist farmers, gardeners, and researchers in monitoring plant health and implementing effective treatment strategies. This project aims to contribute to sustainable agriculture practices and enhance our ability to safeguard plant biodiversity.
 
-Remember, the success of PhytoPhinder, like any machine learning project, hinges on the quality of the data it's trained on. Always ensure your data is clean, relevant, and diverse to train a model that's as accurate and unbiased as possible.
 
 
 ## Dataset and Exploratory Data Analysis (EDA)

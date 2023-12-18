@@ -15,6 +15,7 @@ xgboost = "*"
 matplotlib = "*"
 seaborn = "*"
 gradio = "*"
+joblib = "*"
 
 [dev-packages]
 
