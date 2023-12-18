@@ -23,10 +23,9 @@ Credit: [Bing Chat](https://www.bing.com/?FORM=Z9FD1)
 
 I hyper-parameter tune it with differnt CNN models (**notebook_1.ipynb**, and **phytophinder-the-leaf-detective.ipynb**) with different inner-layers. Validation-loss defines the perforfence of the best model. Where **phytophinder-the-leaf-detective.ipynb** is the final version of my code. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(disease or healthy) of a plant leaf. Finally, I containerise this application and publish it to docker-hub.
 
+![Screenshot 2023-12-18 215159](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/8d27cd43-94e4-4f76-a7fa-7b1c27eb768d)
 
-
-
-
+Credit: [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
 
 ## Dataset and Exploratory Data Analysis (EDA)
 
