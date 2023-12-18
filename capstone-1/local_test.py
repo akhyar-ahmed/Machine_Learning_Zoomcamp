@@ -65,4 +65,4 @@ predictions = best_model.get_tensor(output_index)
 predicted_class = np.argmax(predictions)
 
 # Print the result
-print(f'\nPredicted class: {predicted_class}, {classes[predicted_class]}')
+print(f'\nPredicted class: {classes[predicted_class]}')
