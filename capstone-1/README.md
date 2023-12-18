@@ -16,7 +16,8 @@
 ## [Project Overview](#project-overview)
 ### Description
 PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use. The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model.
-![Title Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/87b8cb21-38f1-4e4c-a523-102982a8415b)
+
+![Title Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/e5228eba-dadb-4232-806d-c9d8a28812e2)
 
 ### Importance
 Plant diseases can lead to significant reductions in crop yield and quality, resulting in economic losses and food security issues. Early and accurate detection of plant diseases can enable timely intervention, preventing widespread damage and ensuring the health of our ecosystems.
