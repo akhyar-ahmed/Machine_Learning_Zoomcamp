@@ -59,8 +59,10 @@ predictions = best_model.get_tensor(output_index)
 # # Get the predictions
 # predictions = best_model.predict(img_array)
 # ################################################################################################################################
+
+
 # Assuming it's a multiclass classification, you can get the class with the highest probability
 predicted_class = np.argmax(predictions)
 
 # Print the result
-print(f'Predicted class: {predicted_class}, {classes[predicted_class]}')
+print(f'\nPredicted class: {predicted_class}, {classes[predicted_class]}')
