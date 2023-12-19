@@ -113,7 +113,7 @@ docker build --pull --rm -f "capstone-1\DockerFile" -t mlzoomcamphomeworks:proje
 Once the image is built, we need to expose the container port (8001) to the localhost port (8001) using:
 
 ```bash
-docker run --rm -it -p 8001:8001/tcp akhyarahmed/mlzoomcamp:projects-capstone-1.0
+docker run --rm -it -p 8001:8001/tcp mlzoomcamphomeworks:projects-capstone-1.0
 ```
 
 Alternatively,
