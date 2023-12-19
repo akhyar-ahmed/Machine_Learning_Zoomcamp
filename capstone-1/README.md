@@ -96,7 +96,7 @@ I have written a REST API code (`app.py`) for serving the model by exposing the 
 uvicorn app:app --host=0.0.0.0 --port=8001
 ```
 
-After running it you can go to `localhost:8001/predict` and can use this to make an example prediction:
+After running it you can go to `http://localhost:8001/predict` and can use this to make an example prediction:
 
 ![Screenshot 2023-12-18 215159](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/8d27cd43-94e4-4f76-a7fa-7b1c27eb768d)
 
