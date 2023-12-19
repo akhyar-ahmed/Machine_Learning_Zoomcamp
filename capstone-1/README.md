@@ -135,7 +135,7 @@ python local_test.py
 
 ## [Directory description](#directory-description)
 
-🚨 `class_labels.json` has the name of all clasees
+🚨 `class_labels.json` has the name of all clasees.
 
 🚨 `Pipfile` and `Pipfile.lock` are the used environments you can also use them.
 
