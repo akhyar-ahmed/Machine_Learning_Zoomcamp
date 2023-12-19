@@ -145,7 +145,7 @@ python local_test.py
 
 🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can upload it to github.
 
-🚨 `models/` you can find the tflite model there.
+🚨 `models/` you can find the tflite model their.
 
 ## [Contributors](#contributors)
 [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
