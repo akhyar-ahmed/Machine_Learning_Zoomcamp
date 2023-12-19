@@ -5,7 +5,7 @@
 - [Model Selection Process](#model-selection-process)
 - [Dependencies](#dependencies)
 - [Workflow](#workflow)
-- [Directory description](#dirctory-description)
+- [Directory description](#directory-description)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
 
@@ -133,7 +133,7 @@ python local_test.py
 ```
 🚨 You can use some more test data from `images_for_test/` folder. These are unseen images. Image name is the class name of each image. So you can test with these pictures and match the results with the predicted result.
 
-## [Directory Description](#dirctory-description)
+## [Directory description](#directory-description)
 
 🚨 `class_labels.json` has the name of all clasees
 
