@@ -76,7 +76,7 @@ This notebook outlines the entire investigation and consists of the following st
 - Exploratory data analysis
 - Setting up a ImageDataGenerator
 - Model evaluation [and hyper-parameter tuning]
-- Saving the best model and encoders [in the [models](/models) directory]
+- Saving the best model and encoders [in the [models](./capstone-1/models) directory]
 - Making predictions using the saved model
 
 ### 4. Training model
