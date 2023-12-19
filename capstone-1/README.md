@@ -104,7 +104,7 @@ Credit: [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
 
 ### 6. Containerizing the model
 
-Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `no-show-prediction`:
+Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `projects-capstone-1.0`:
 
 ```bash
 docker build --pull --rm -f "capstone-1\DockerFile" -t mlzoomcamphomeworks:projects-capstone-1.0 "capstone-1"
