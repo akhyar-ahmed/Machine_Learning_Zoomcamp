@@ -74,9 +74,9 @@ The Machine Learning Zoomcamp 2023 is an immersive program that covers fundament
 
 ### 10. Kubernetes and TensorFlow Serving
 
-- [Module materials](lhttps://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/10-kubernetes)
+- [Module materials](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/10-kubernetes)
 - [Homework](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/blob/main/week-10/homework.md)
-- Homework solution (https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/tree/main/week-10)
+- [Homework solution](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/tree/main/week-10)
 
 ### 11. KServe (optional)
 
