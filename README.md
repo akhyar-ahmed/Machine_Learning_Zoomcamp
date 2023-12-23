@@ -70,7 +70,7 @@ The Machine Learning Zoomcamp 2023 is an immersive program that covers fundament
 
 - [Module materials](https://github.com/DataTalksClub/machine-learning-zoomcamp/tree/master/09-serverless)
 - [Homework](https://github.com/akhyar016/Machine_Learning_Zoomcamp/blob/main/week-9/homework.md)
-- [Homework solution](TODO)
+- [Homework solution](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/tree/main/week-9)
 
 ### 10. Kubernetes and TensorFlow Serving
 
