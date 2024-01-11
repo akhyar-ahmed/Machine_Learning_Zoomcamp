@@ -8,7 +8,7 @@
 - [Directory description](#directory-description)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
-- [Evaluation Feedback](#feedbacks)
+- [Evaluation Feedback](#evaluation-feedback)
 
 ## [Project Overview & Dataset](#project-overview-dataset)
 
