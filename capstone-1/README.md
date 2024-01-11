@@ -8,7 +8,7 @@
 - [Directory description](#directory-description)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
-- [Evaluation Feedback](#feedback)
+- [Evaluation Feedback](#feedbacks)
 
 ## [Project Overview & Dataset](#project-overview-dataset)
 
@@ -155,5 +155,5 @@ python local_test.py
 * [Alexey Grigorev](https://github.com/alexeygrigorev)
 * [DataTalks.Club](https://datatalks.club/)
 
-## [Evaluation Feedback](#feedback)
+## [Evaluation Feedback](#feedbacks)
 ![feedback](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/dee820df-e90e-47e5-9740-3df1dd4d1c8e)
