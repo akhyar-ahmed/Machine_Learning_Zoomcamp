@@ -8,6 +8,7 @@
 - [Directory description](#directory-description)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
+- [Evaluation Feedback](#feedback)
 
 ## [Project Overview & Dataset](#project-overview-dataset)
 
@@ -148,8 +149,11 @@ python local_test.py
 🚨 `models/` you can find the tflite model their.
 
 ## [Contributors](#contributors)
-[Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
+* [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
 
 ## [Acknowledgments](#acknowledgments)
 * [Alexey Grigorev](https://github.com/alexeygrigorev)
 * [DataTalks.Club](https://datatalks.club/)
+
+## [Evaluation Feedback](#feedback)
+![feedback](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/dee820df-e90e-47e5-9740-3df1dd4d1c8e)
