@@ -24,7 +24,6 @@ from tqdm import tqdm
 from transformers import (
     BertConfig,
     BertForSequenceClassification,
-    BertModel,
     DistilBertConfig,
     DistilBertForSequenceClassification
 )
