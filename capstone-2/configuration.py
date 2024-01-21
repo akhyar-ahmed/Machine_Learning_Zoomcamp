@@ -19,3 +19,4 @@ class Config:
         self.batch_size = 32
         self.shuffle_train = True
         self.dropout = 0.2
+        self.deplpoyment = False
