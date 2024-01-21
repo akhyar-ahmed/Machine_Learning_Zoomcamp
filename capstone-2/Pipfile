@@ -12,6 +12,7 @@ pandas = "*"
 tensorboard = "*"
 tensorflow = "*"
 tf2onnx = "*"
+pyarrow = "*"
 
 [dev-packages]
 
