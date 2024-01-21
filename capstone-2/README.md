@@ -15,7 +15,7 @@ PhytoPhinder is an innovative plant disease detection system that harnesses the 
 
 This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model. The dataset comprise with approximate ~90k of images (train ~70k, test ~20k). The dataset only provide 38 types of disease and healthy images of several plants. EDA has been done in `notebooks/phytophinder-the-leaf-detective.ipynb` notebook. You can see all the types of plant sample (healty and non-healthy) images. Which means this problem is a multi-class classification problem and we have 38 classes to classify. I also created `small_dataset` (you can download it from [here](https://drive.google.com/file/d/1noWajl7rgjk_84uHx2OkdcQ-cAth8nuZ/view?usp=sharing)). I used this dataset in `notebooks/notebook_1.ipynb` to run the project locally. You can use this dataset to run the project locally. Don't worry it has all equally distributed images from all classes. 
 
-![Title_Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/647f40f9-819b-4c8e-8653-f7af0c02a945)
+![Title_Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/50096da1-6e05-4331-928e-407186538533)
 
 Credit: [Bing Chat](https://www.bing.com/?FORM=Z9FD1)
 
