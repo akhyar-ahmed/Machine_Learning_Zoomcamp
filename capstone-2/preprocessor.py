@@ -129,16 +129,20 @@ def do_tokenization(config, context, model_name) -> BertTokenizer:
 
 
 # Dataset can be either train, test or valid
-def load_dataset(config) -> DataContext:
+def load_dataset(config, df=None) -> DataContext:
     context = DataContext(config)
 
-    # Read the dataset from config.train_PATH and config.test_PATH
-    context.df_train = pd.read_csv(config.train_PATH, encoding="utf-8")
+    if config.deplpoyment == False and df == None:
+        # Read the dataset from config.train_PATH and config.test_PATH
+        context.df_train = pd.read_csv(config.train_PATH, encoding="utf-8")
 
-    context.df_test = pd.read_csv(config.test_PATH, encoding="utf-8")
+        context.df_test = pd.read_csv(config.test_PATH, encoding="utf-8")
 
-    # Merge DataFrames
-    context.df = pd.concat([context.df_train, context.df_test], ignore_index=True)
+        # Merge DataFrames
+        context.df = pd.concat([context.df_train, context.df_test], ignore_index=True)
+    else:
+        context.df = df
+
 
     # Assuming df is your DataFrame
     context.df["text"] = context.df["Title"] + " " + context.df["Description"]
@@ -148,7 +152,7 @@ def load_dataset(config) -> DataContext:
 
     # Print a log
     print(">> CSV LOADING DONE.")
-
+    
     # Preprocess and create encodings for the dataset
     context.preprocess_texts()
 
@@ -159,6 +163,8 @@ def load_dataset(config) -> DataContext:
     tokenized_news = do_tokenization(
         config, context, "DistilBertToken"
     )  # you can change it here for BertToken
+
+    # Concatanate all the tokenizes column with the dataframe
     context.df = pd.concat([context.df, pd.DataFrame(tokenized_news.tolist())], axis=1)
 
     # Print a log
@@ -167,50 +173,63 @@ def load_dataset(config) -> DataContext:
     # Create a custom dataset instance
     dataset = CustomDataset(context.df)
 
-    # Define the sizes for train, validation, and test sets
-    train_size = int(0.7 * len(dataset))
-    val_size = int(0.15 * len(dataset))
-    test_size = len(dataset) - train_size - val_size
+    if config.deplpoyment == False and df == None:
+        # Define the sizes for train, validation, and test sets
+        train_size = int(0.7 * len(dataset))
+        val_size = int(0.15 * len(dataset))
+        test_size = len(dataset) - train_size - val_size
 
-    # Split the dataset into train, validation, and test sets
-    train_dataset, val_dataset, test_dataset = random_split(
-        dataset,
-        [train_size, val_size, test_size],
-        generator=torch.Generator().manual_seed(config.seed),
-    )
+        # Split the dataset into train, validation, and test sets
+        train_dataset, val_dataset, test_dataset = random_split(
+            dataset,
+            [train_size, val_size, test_size],
+            generator=torch.Generator().manual_seed(config.seed),
+        )
 
-    # Create context dataset for hyperparameter tuning
-    context.train_dataset = train_dataset
-    context.valid_dataset = val_dataset
-    context.test_dataset = test_dataset
+        # Create context dataset for hyperparameter tuning
+        context.train_dataset = train_dataset
+        context.valid_dataset = val_dataset
+        context.test_dataset = test_dataset
 
-    # Create data loaders for train, validation, and test sets
-    context.train_dataloader = DataLoader(
-        train_dataset,
-        batch_size=config.batch_size,
-        shuffle=config.shuffle_train,
-        num_workers=config.num_workers,
-    )
-    context.valid_dataloader = DataLoader(
-        val_dataset,
-        batch_size=config.batch_size,
-        shuffle=False,
-        num_workers=config.num_workers,
-    )
-    context.test_dataloader = DataLoader(
-        test_dataset,
-        batch_size=config.batch_size,
-        shuffle=False,
-        num_workers=config.num_workers,
-    )
+        # Create data loaders for train, validation, and test sets
+        context.train_dataloader = DataLoader(
+            train_dataset,
+            batch_size=config.batch_size,
+            shuffle=config.shuffle_train,
+            num_workers=config.num_workers,
+        )
+        context.valid_dataloader = DataLoader(
+            val_dataset,
+            batch_size=config.batch_size,
+            shuffle=False,
+            num_workers=config.num_workers,
+        )
+        context.test_dataloader = DataLoader(
+            test_dataset,
+            batch_size=config.batch_size,
+            shuffle=False,
+            num_workers=config.num_workers,
+        )
+        
+        # Print a log
+        print(">> DATALOADER AND VALIDATION FRAMEWORK CREATED.")
+    
+        # Show max-length for each category
+        showLengthCount(context)
 
-    # Print a log
-    print(">> DATALOADER AND VALIDATION FRAMEWORK CREATED.")
+        return context
+    else:
+        context.test_dataset = dataset
+        context.test_dataloader = DataLoader(
+            context.test_dataset,
+            batch_size=len(df),
+            shuffle=False,
+            num_workers=0,
+        )
 
-    # Show max-length for each category
-    showLengthCount(context)
-
-    return context
+        # Print a log
+        print(">> DATALOADER AND VALIDATION FRAMEWORK CREATED.")
+        return context.test_dataloader
 
 
 # Show maximum length for each class news
