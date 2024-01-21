@@ -64,9 +64,9 @@ best_model = DistilBertForSequenceClassification(config_distilbert)
 
 # Load the trained model state_dict
 if str(config.device) == "cpu":
-    best_model.load_state_dict(torch.load("models/best_model_DistilBertForSequenceClassification_1e-05.bin", map_location=torch.device('cpu')))
+    best_model.load_state_dict(torch.load("./models/best_model_DistilBertForSequenceClassification_1e-05.bin", map_location=torch.device('cpu')))
 else:
-    best_model.load_state_dict(torch.load("models/best_model_DistilBertForSequenceClassification_1e-05.bin"))
+    best_model.load_state_dict(torch.load("./models/best_model_DistilBertForSequenceClassification_1e-05.bin"))
 
 
 best_model = best_model.to(config.device)
