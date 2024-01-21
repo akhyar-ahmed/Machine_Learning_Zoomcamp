@@ -13,6 +13,11 @@ tensorboard = "*"
 tensorflow = "*"
 tf2onnx = "*"
 pyarrow = "*"
+uvicorn = "*"
+gradio = "*"
+fastapi = "*"
+jinja2 = "==3.1.2"
+sentencepiece = "*"
 
 [dev-packages]
 
