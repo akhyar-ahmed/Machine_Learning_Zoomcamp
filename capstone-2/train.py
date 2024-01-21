@@ -16,6 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 from torch.utils.tensorboard import SummaryWriter
@@ -173,16 +174,20 @@ def test(context, config_obj) -> None:
     )
     best_model = DistilBertForSequenceClassification(config_distilbert)
 
-
     # Load the trained model state_dict
-    best_model.load_state_dict(torch.load("models/best_model_DistilBertForSequenceClassification_1e-05.bin"))
+    if str(config_obj.device) == "cpu":
+        best_model.load_state_dict(torch.load("models/best_model_DistilBertForSequenceClassification_1e-05.bin", map_location=torch.device('cpu')))
+
+    else:
+        best_model.load_state_dict(torch.load("models/best_model_DistilBertForSequenceClassification_1e-05.bin"))
 
     best_model = best_model.to(config_obj.device)
     # Evaluate the model on the test set
     best_model.eval()
     y_true = []
     y_pred = []
-
+    epoch = 1
+    
     with torch.no_grad():
         for batch in tqdm(
                     context.test_dataloader, desc=f"Epoch {epoch + 1}/{config_obj.epochs}"
