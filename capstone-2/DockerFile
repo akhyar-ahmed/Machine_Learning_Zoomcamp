@@ -1,0 +1,38 @@
+FROM pytorch/pytorch:latest
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
+EXPOSE 8080
+
+# Copy Pipfiles
+COPY Pipfile Pipfile
+COPY Pipfile.lock Pipfile.lock
+
+# Install Pipenv and dependencies
+RUN pip install pipenv \
+    && pipenv install --deploy --system
+
+
+# Create a directory to store model files inside the container
+RUN mkdir -p /app/models
+
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application files
+COPY models/ /app/models
+
+
+# Add all necessary scripts
+ADD app.py /app
+ADD class_labels.json /app
+ADD preprocessor.py /app/
+ADD configuration.py /app/
+
+
+# Run the application
+ENTRYPOINT ["uvicorn", "app:app", "--host=0.0.0.0", "--port=8080"]
