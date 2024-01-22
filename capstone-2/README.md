@@ -11,28 +11,53 @@
 
 ## [Project Overview & Dataset](#project-overview-dataset)
 
-PhytoPhinder is an innovative plant disease detection system that harnesses the power of Convolutional Neural Networks (CNNs). It diagnoses diseases in plants based on leaf images with remarkable accuracy. The system is built using PyTorch, a leading deep learning framework, and is deployed as a FastAPI application in a Docker container, ensuring scalability and ease of use. The project utilizes a comprehensive dataset of leaf images from Kaggle, known as the Leaf Disease Detection [Dataset](https://www.kaggle.com/datasets/dev523/leaf-disease-detection-dataset/data). 
+The Trans4News project aims to develop a multiclass news classifier utilizing the AG News Topic Classification dataset. This dataset, comprising over 1 million news articles, has been meticulously curated from 2000 diverse news sources by the academic news search engine, ComeToMyHead. The dataset spans more than a year of activity, starting from July 2004.
 
-This dataset provides a diverse range of leaf images, covering various species and disease states, which aids in training a robust and versatile model. The dataset comprise with approximate ~90k of images (train ~70k, test ~20k). The dataset only provide 38 types of disease and healthy images of several plants. EDA has been done in `notebooks/phytophinder-the-leaf-detective.ipynb` notebook. You can see all the types of plant sample (healty and non-healthy) images. Which means this problem is a multi-class classification problem and we have 38 classes to classify. I also created `small_dataset` (you can download it from [here](https://drive.google.com/file/d/1noWajl7rgjk_84uHx2OkdcQ-cAth8nuZ/view?usp=sharing)). I used this dataset in `notebooks/notebook_1.ipynb` to run the project locally. You can use this dataset to run the project locally. Don't worry it has all equally distributed images from all classes. 
+### Dataset Details:
+
+**Source:** AG Corpus of News Articles
+
+**Provider:** ComeToMyHead Academic News Search Engine
+
+**Construction:** Xiang Zhang (xiang.zhang@nyu.edu) curated the AG's news topic classification dataset from the original corpus.
+
+**Benchmark Usage:** The dataset is employed as a text classification benchmark, specifically in the paper titled "Character-level Convolutional Networks for Text Classification" (Xiang Zhang, Junbo Zhao, Yann LeCun, Advances in Neural Information Processing Systems 28 - NIPS 2015).
+
+**Dataset Composition:** The AG's news topic classification dataset consists of the four largest classes chosen from the original corpus. Each class comprises 30,000 training samples and 1,900 testing samples, resulting in a total of 120,000 training samples and 7,600 testing samples.
+
+**Label Information:** The file classes.txt contains a list of classes corresponding to each label.
+
+**Data Format:** The dataset is provided in two comma-separated values (CSV) files - train.csv and test.csv. Each file contains three columns: class index (1 to 4), title, and description. Titles and descriptions are escaped using double quotes ("), and any internal double quote is escaped by 2 double quotes (""). New lines are escaped by a backslash followed by an "n" character (i.e., "\n").
+
+### Purpose of the Project:
+
+The Trans4News project aims to implement a multiclass news classifier using advanced natural language processing (NLP) techniques `transfomer models` (`BertForSequenceClassifier`, `DistilBertForSequenceClassifier`). The classifier will be trained on the AG's news topic classification dataset to effectively categorize news articles into predefined classes. The primary purposes of the project include:
+
+**Text Classification Benchmarking:** Evaluate the performance of the classifier against the AG's news topic classification dataset, serving as a benchmark for multiclass text classification tasks.
+
+**Research in NLP:** Contribute to the field of natural language processing by comparing and implementing advanced models for news article classification.
+
+**Open-Source Contribution:** Provide an open-source solution for multiclass news classification, encouraging collaboration and further advancements in the field.
+
+**Education and Learning:** Create a learning resource for developers, researchers, and enthusiasts interested in NLP, text classification, and machine learning.
 
 ![Title_Image](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/50096da1-6e05-4331-928e-407186538533)
 
 Credit: [Bing Chat](https://www.bing.com/?FORM=Z9FD1)
 
-I hyper-parameter tune it with differnt CNN models (`notebook_1.ipynb`, and `phytophinder-the-leaf-detective.ipynb`) with different inner-layers. Validation-loss defines the perforfence of the best model. Where `phytophinder-the-leaf-detective.ipynb` is the final version of my code. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(disease or healthy) of a plant leaf. Finally, I containerise this application and publish it to docker-hub.
+There's nothing much to tune for such architecture model. I first tried scheduling to adjust learning-rate dynamically but I found it time consuming so I only stick with some static learning rates to tune. Another thing is, I also tried by adding a dropout layer before calculating the final outputs. But found that the result don't change much. So I also remove that part from final training.`trans4news-multiclass-news-classifier.ipynb` file has everything written step by step. I implemented early-stopping technique on validation-loss, summarywriting from tensorboard to minitor the model results, and also model checkpointing to get the best model on the base of validation loss. Which means Validation-loss defines the perforfence of the best model for each architecture. After the training DistilBertForSequenceClassifier show better result. So I stick with that architecture for furthure proceeding. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(`class_labels.json`) of a news article. Finally, I containerise this application, publish it to docker-hub, and deployed it to cloud using AWS Fahargate, ECS, ECR.
 
 
 ## [Model Selection Process](#model-selection-process)
 
 As mentioned above the model selection process involves choosing a best hyper-parameter combination for my dataset that best fits the multi-class classification task. Potential hyperparameter includes:
 
-- with/without an extra inner-layer (see `notebook_1.ipynb`'s model and `phytophinder-the-leaf-detective.ipynb`'s model for better comparison)
-- adjusting learning rate (see `phytophinder-the-leaf-detective.ipynb`'s model)
-- adjusting dropout rate (see `phytophinder-the-leaf-detective.ipynb`'s model)
-- adjusting the size of inner layer (see `phytophinder-the-leaf-detective.ipynb`'s model)
+- compare results between `BertForSequenceClassifier` and `DistilBertForSequenceClassifier`
+- adjusting learning rate (see `trans4news-multiclass-news-classifier.ipynb`'s model)
+- adjusting dropout rate (I tried with several dopout values [0.1, 0.2, 0.3]. But results don't change much and it's also time consuming so I later drop this.)
 
-I use Adam optimizer to calculate the loss. So whichever configuration give best validation loss, I choose that model for final training. 
-- See `notebooks/best_model_config.json`, which shows you all the configuration details of the best model (which performed well).
+I use Adam optimizer to calculate the loss and CrossEntropy for criterion. So whichever configuration give best validation loss, I choose that model for final training. 
+- See `configuration.py`, which shows you all the configuration details of the best model (which performed well).
 
 
 
@@ -54,7 +79,7 @@ To replicate the project environment, follow these steps:
 
 ```bash
    - git clone -b v1.1 https://github.com/akhyar016/mlzoomcamp_homeworks.git
-   - cd capstone-1
+   - cd capstone-2
 ```
 
 ### 2. Setting up the environment:
@@ -67,17 +92,18 @@ To replicate the project environment, follow these steps:
 
 Now, you have a virtual environment with all the necessary dependencies installed, allowing you to run the project code seamlessly.
 
-### 3. Running `notebooks/phytophinder-the-leaf-detective.ipynb` 
+### 3. Running `notebooks/trans4news-multiclass-news-classifier.ipynb` 
 
 This notebook outlines the entire investigation and consists of the following steps [🚨 Skip this step, if you want to directly want to use the final configuration for training and/or final model for predictions]:
 
-- Data loading
-- Data cleaning and preparation
-- Exploratory data analysis
-- Setting up a ImageDataGenerator
-- Model evaluation [and hyper-parameter tuning]
-- Saving the best model and encoders [in the [models](./models) directory]
-- Making predictions using the saved model
+- Package installation
+- Configuration class
+- Set random seed for reproducibility
+- Data loading and preprocessing (Which includes, EDA, Tokenization, Dataset creation, and Dataloader creation for all train, valid, test set)
+- Model training [and hyper-parameter tuning]
+- Saving the best model(`best_model_DistilBertForSequenceClassification_1e-05.bin`) in the [models](./models) directory
+- Evaluate the best model on test set.
+- Making predictions using the saved model (`local_test.py`).
 
 ### 4. Training model
 
