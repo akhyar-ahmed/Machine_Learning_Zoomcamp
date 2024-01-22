@@ -251,16 +251,23 @@ aws ecs register-task-definition --cli-input-json file://your-task-definition-fi
 aws ecs run-task --cluster your-cluster-name --task-definition your-task-family-name --count 1 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-1234id],securityGroups=[sg-1234group],assignPublic=ENABLED}"
 ```
 
+![aws_run_task_definition](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/0d1ddb0e-ca87-48fd-a82e-71f1cb2dc940)
+
 
 * Expose that running task.
 
 ```bash
 aws ecs create-service --cluster your-cluster-name --service-name any-name-for-this-service --task-definition take-it-from-above --desired-count 1 --launch-tyoe FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-1234id],securityGroups=[sg-1234group],assignPublic=ENABLED}"
 ```
+![aws_expose_run_task](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/47630542-e8f6-49a2-8352-a70f13966a83)
+![aws_expose_run_task_1](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/31378840-cf42-42d0-8c75-4a6c282a4354)
 
 
 ### 7.5 Check your service and clean up everything
 Once your service is up and running (you can check it in your AWS ECS console) you will see a public ip or DNS under your ECS service with that you can access your application.
+
+![aws_ecr_registry](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/a55e9ade-3646-4ef7-88f0-b9dd315abef8)
+
 ```bash
 http://<public-ip-or-dns>:<your-app-port>
 ```
