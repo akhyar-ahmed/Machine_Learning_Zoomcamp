@@ -1,7 +1,7 @@
 """
 
 To run it:
-uvicorn app:app --host=0.0.0.0 --port=8001
+uvicorn app:app --host=0.0.0.0 --port=8080
 
 """
 import json

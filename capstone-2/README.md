@@ -107,7 +107,7 @@ This notebook outlines the entire investigation and consists of the following st
 
 ### 4. Training model
 
-We encode our best model (`notebooks/best_model_config.json`) inside the `train.py` file which can be run using:
+We encode our best model (`best_model_DistilBertForSequenceClassification_1e-05.bin`) inside the `train.py` file which can be run using:
 ```
 python -m train
 ```
@@ -116,7 +116,7 @@ You can see all kind of outputs including checkpoints in the `output/` folder.
 
 ### 5. Making predictions
 
-I have written a REST API code (`app.py`) for serving the model by exposing the port:8001, which can be run using:
+I have written a REST API code (`app.py`) for serving the model by exposing the port:8080, which can be run using:
 
 ```
 uvicorn app:app --host=0.0.0.0 --port=8001
