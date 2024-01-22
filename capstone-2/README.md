@@ -131,23 +131,23 @@ Credit: [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
 
 ### 6. Containerizing the model
 
-Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `projects-capstone-1.0`:
+Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `projects-capstone-2.0`:
 
 ```bash
-docker build --pull --rm -f "capstone-1\DockerFile" -t mlzoomcamphomeworks:projects-capstone-1.0 "capstone-1"
+docker build --pull --rm -f "capstone-2\DockerFile" -t mlzoomcamphomeworks:projects-capstone-2.0 "capstone-2"
 ```
 
-Once the image is built, we need to expose the container port (8001) to the localhost port (8001) using:
+Once the image is built, we need to expose the container port (8080) to the localhost port (8080) using:
 
 ```bash
-docker run --rm -it -p 8001:8001/tcp mlzoomcamphomeworks:projects-capstone-1.0
+docker run --rm -it -p 8080:8080/tcp mlzoomcamphomeworks:projects-capstone-2.0
 ```
 
 Alternatively,
 Pull the Docker Image from Docker Hub: Run the following command in your terminal or command prompt to pull the Docker image from Docker Hub:
 ```bash
-docker pull akhyarahmed/mlzoomcamp:projects-capstone-1.0
-docker run --rm -it -p 8001:8001/tcp akhyarahmed/mlzoomcamp:projects-capstone-1.0
+docker pull akhyarahmed/mlzoomcamp:projects-capstone-2.0
+docker run --rm -it -p 8080:8080/tcp akhyarahmed/mlzoomcamp:projects-capstone-2.0
 ```
 
 
@@ -156,9 +156,16 @@ We can now make a request in exactly the same way as Step 5:
 
 ```
 python local_test.py
-# ["Predicted class: Tomato___Tomato_Yellow_Leaf_Curl_Virus"] 
 ```
-🚨 You can use some more test data from `images_for_test/` folder. These are unseen images. Image name is the class name of each image. So you can test with these pictures and match the results with the predicted result.
+
+🚨 You can use some more test data from `datasets/test.csv` file. These are unseen news. Class Index is the class number of each news. So you can test with these news and match the results with the predicted result with the help of `class_label.json`.
+
+
+### 7. Cloud Deployment
+
+#### 7.1 AWS Configuration:
+
+
 
 ## [Directory description](#directory-description)
 
@@ -166,11 +173,11 @@ python local_test.py
 
 🚨 `Pipfile` and `Pipfile.lock` are the used environments you can also use them.
 
-🚨 `eda_and_preprocessomg.py` has all the EDA and preprocessing codes.
+🚨 `preprocessomg.py` has all the EDA and preprocessing codes.
 
 🚨 `plots/` folder has all the figures, which were created during EDA or image content analysis.
 
-🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can upload it to github.
+🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can use it for cloud deployment.
 
 🚨 `models/` you can find the tflite model their.
 
