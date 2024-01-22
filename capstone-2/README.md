@@ -237,6 +237,8 @@ aws ecs create-cluster --cluster-name your-cluster-name
 }
 
 ```
+🚨Also re confirm that your `executionRoleArn` has permission to receive requests from AWS services. You can handle it in AWS ECS dashboard.
+
 * Second thing is we need to register this task definition to ECS. 🚨 Don't forget to add `file://` before your file path, cause this is a syntax for AWS CLI.
 ```bash
 aws ecs register-task-definition --cli-input-json file://your-task-definition-file-path/your-task-definition-file-name.json
@@ -244,7 +246,37 @@ aws ecs register-task-definition --cli-input-json file://your-task-definition-fi
 
 ![aws_register_task_definition](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/30471a1c-9fcc-475a-90d1-a687b433d5f3)
 
-* 
+* Run your registered task definition. To do take we need task-family-name from `task-definition.json`'s `family` attribute, launch-type should be fargate, netwrok configuration as I used awsvpc netwrokmode. For network configuration we need public subnet ip and security group. Both can be found from your AWS IAM console. Just remember to take available public ip's from `your-time-zone-region`.
+```bash
+aws ecs run-task --cluster your-cluster-name --task-definition your-task-family-name --count 1 --launch-type FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-1234id],securityGroups=[sg-1234group],assignPublic=ENABLED}"
+```
+
+
+* Expose that running task.
+
+```bash
+aws ecs create-service --cluster your-cluster-name --service-name any-name-for-this-service --task-definition take-it-from-above --desired-count 1 --launch-tyoe FARGATE --network-configuration "awsvpcConfiguration={subnets=[subnet-1234id],securityGroups=[sg-1234group],assignPublic=ENABLED}"
+```
+
+
+### 7.5 Check your service and clean up everything
+Once your service is up and running (you can check it in your AWS ECS console) you will see a public ip or DNS under your ECS service with that you can access your application.
+```bash
+http://<public-ip-or-dns>:<your-app-port>
+```
+🚨 Remember to remove all the created services and clusters to avoid getting charges. To do that just run below commands in AWS CLI
+
+* Delete the service we created for our task.
+```bash
+aws ecs delete-service --cluster your-cluster-name --service your-given-serive-name-from-above --force
+```
+
+* Delete the FARGATE cluster
+```bash
+aws ecs delete-cluster --cluster your-cluster-name
+```
+
+
 ## [Directory description](#directory-description)
 
 🚨 `class_labels.json` has the name of all clasees.
