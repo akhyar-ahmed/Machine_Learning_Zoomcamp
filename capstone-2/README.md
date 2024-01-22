@@ -192,7 +192,7 @@ docker push your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aw
 
 ![aws_login_docker_tag_push](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/b0143af2-2957-4931-ad54-06ef6df7af65)
 
-
+![aws_ecr_registry](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/a55e9ade-3646-4ef7-88f0-b9dd315abef8)
 
 ### 7.3 Create AWS ECS cluster:
 Create a ECR cluster with a proper name.
@@ -265,8 +265,6 @@ aws ecs create-service --cluster your-cluster-name --service-name any-name-for-t
 
 ### 7.5 Check your service and clean up everything
 Once your service is up and running (you can check it in your AWS ECS console) you will see a public ip or DNS under your ECS service with that you can access your application.
-
-![aws_ecr_registry](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/a55e9ade-3646-4ef7-88f0-b9dd315abef8)
 
 ```bash
 http://<public-ip-or-dns>:<your-app-port>
