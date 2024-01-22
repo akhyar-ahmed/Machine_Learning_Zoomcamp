@@ -200,6 +200,7 @@ Create a ECR cluster with a proper name.
 aws ecs create-cluster --cluster-name your-cluster-name
 ```
 
+![aws_create_cluster](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/4c05b35f-4c63-4101-b3f3-48e63a0f227a)
 
 
 ## [Directory description](#directory-description)
