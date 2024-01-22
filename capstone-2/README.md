@@ -203,7 +203,7 @@ aws ecs create-cluster --cluster-name your-cluster-name
 ![aws_create_cluster](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/4c05b35f-4c63-4101-b3f3-48e63a0f227a)
 
 ### 7.4 Write a task definition:
-* We need a task definition to deplpoy and expose our docker image. In that file we also write about the port we want to use I wrote for my windows system and my task is compatible for Fargate and EC2. Here is my task definition (lets name it `task-definition.json`):
+* We need a task definition to deplpoy and expose our docker image. In that file we also write about the port we want to use, how much memory we need, etc. I wrote for my windows system and my task is compatible for Fargate and EC2. Here is my task definition (lets name it `task-definition.json`):
 ```bash
 {
   "containerDefinitions": [
@@ -237,10 +237,11 @@ aws ecs create-cluster --cluster-name your-cluster-name
 }
 
 ```
-* Second thing is we need to register this task definition to ECS.
+* Second thing is we need to register this task definition to ECS. 🚨 Don't forget to add `file://` before your file path, cause this is a syntax for AWS CLI.
 ```bash
-aws
+aws ecs register-task-definition --cli-input-json file://your-task-definition-file-path/your-task-definition-file-name.json
 ```
+
 
 ## [Directory description](#directory-description)
 
