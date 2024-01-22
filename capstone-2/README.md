@@ -193,6 +193,15 @@ docker push your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aw
 ![aws_login_docker_tag_push](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/b0143af2-2957-4931-ad54-06ef6df7af65)
 
 
+
+### 7.3 Create AWS ECS cluster:
+Create a ECR cluster with a proper name.
+```bash
+aws ecs create-cluster --cluster-name your-cluster-name
+```
+
+
+
 ## [Directory description](#directory-description)
 
 🚨 `class_labels.json` has the name of all clasees.
