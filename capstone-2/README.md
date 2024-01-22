@@ -185,7 +185,7 @@ aws ecr get-login-password --region your-time-zone-region | docker login --usern
 ```
 * Secondly build your docker image and upload it to ECR
 ```bash
-docker tag your_repo_name:tags your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
+docker tag your-repo-name:tags your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
 
 docker push your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
 ```
@@ -202,6 +202,45 @@ aws ecs create-cluster --cluster-name your-cluster-name
 
 ![aws_create_cluster](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/4c05b35f-4c63-4101-b3f3-48e63a0f227a)
 
+### 7.4 Write a task definition:
+* We need a task definition to deplpoy and expose our docker image. In that file we also write about the port we want to use I wrote for my windows system and my task is compatible for Fargate and EC2. Here is my task definition (lets name it `task-definition.json`):
+```bash
+{
+  "containerDefinitions": [
+      {
+          "command": ["New-Item -Path C:\\inetpub\\wwwroot\\index.html -Type file -Value '<html> <head> <title>Amazon ECS Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>Amazon ECS Sample App</h1> <h2>Congratulations!</h2> <p>Your application is now running on a container in Amazon ECS.</p>'; C:\\ServiceMonitor.exe w3svc"],
+          "entryPoint": [
+              "powershell",
+              "-Command"
+          ],
+          "essential": true,
+          "cpu": 2048,
+          "memory": 4096,
+          "image": "your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/mlzoomcamp:capstone-2.0",
+          "name": "sample_windows_app",
+          "portMappings": [
+              {
+                  "hostPort": 8080,
+                  "containerPort": 8080,
+                  "protocol": "tcp"
+              }
+          ]
+      }
+  ],
+  "memory": "4096",
+  "cpu": "2048",
+  "networkMode": "awsvpc",
+  "family": "windows-simple-iis-2019-core",
+  "executionRoleArn": "arn:aws:iam::your-aws-user-id:role/ecs-task",
+  "runtimePlatform": {"operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"},
+  "requiresCompatibilities": ["FARGATE"]
+}
+
+```
+* Second thing is we need to register this task definition to ECS.
+```bash
+aws
+```
 
 ## [Directory description](#directory-description)
 
