@@ -202,7 +202,7 @@ aws ecs create-cluster --cluster-name your-cluster-name
 
 ![aws_create_cluster](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/4c05b35f-4c63-4101-b3f3-48e63a0f227a)
 
-### 7.4 Write a task definition:
+### 7.4 Write, register, run, and expose a task definition:
 * We need a task definition to deplpoy and expose our docker image. In that file we also write about the port we want to use, how much memory we need, etc. I wrote for my windows system and my task is compatible for Fargate and EC2. Here is my task definition (lets name it `task-definition.json`):
 ```bash
 {
@@ -230,7 +230,7 @@ aws ecs create-cluster --cluster-name your-cluster-name
   "memory": "4096",
   "cpu": "2048",
   "networkMode": "awsvpc",
-  "family": "windows-simple-iis-2019-core",
+  "family": "your-task-family-name",
   "executionRoleArn": "arn:aws:iam::your-aws-user-id:role/ecs-task",
   "runtimePlatform": {"operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"},
   "requiresCompatibilities": ["FARGATE"]
@@ -244,7 +244,7 @@ aws ecs register-task-definition --cli-input-json file://your-task-definition-fi
 
 ![aws_register_task_definition](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/30471a1c-9fcc-475a-90d1-a687b433d5f3)
 
-
+* 
 ## [Directory description](#directory-description)
 
 🚨 `class_labels.json` has the name of all clasees.

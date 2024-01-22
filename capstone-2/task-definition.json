@@ -23,7 +23,7 @@
   "memory": "4096",
   "cpu": "2048",
   "networkMode": "awsvpc",
-  "family": "windows-simple-iis-2019-core",
+  "family": "your-task-family-name",
   "executionRoleArn": "arn:aws:iam::your-aws-user-id:role/ecs-task",
   "runtimePlatform": {"operatingSystemFamily": "WINDOWS_SERVER_2019_CORE"},
   "requiresCompatibilities": ["FARGATE"]
