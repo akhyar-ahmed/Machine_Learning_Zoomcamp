@@ -124,7 +124,8 @@ uvicorn app:app --host=0.0.0.0 --port=8080
 
 After running it you can go to `http://localhost:8080/predict` and can use this to make an example prediction:
 
-![Screenshot 2023-12-18 215159](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/8d27cd43-94e4-4f76-a7fa-7b1c27eb768d)
+![Trans4News_predictions_1](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/c34fb51e-cedc-4764-a7a2-8dd531627427)
+
 
 Credit: [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
 
