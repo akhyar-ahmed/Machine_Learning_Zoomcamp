@@ -283,11 +283,28 @@ aws ecs delete-cluster --cluster your-cluster-name
 
 🚨 `Pipfile` and `Pipfile.lock` are the used environments you can also use them.
 
-🚨 `preprocessomg.py` has all the EDA and preprocessing codes.
+🚨 `preprocessomg.py` has all the EDA and preprocessing (tokenization and dataloader) codes.
 
-🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can use it for cloud deployment `quantized_best_model.pt`.
+🚨 `train.py` contains code to train and evaluate the best model.
 
-🚨 `models/` you can find the tflite model their.
+🚨 `datasets/` folder contains AG-dataset, both train.csv and test.csv.
+
+🚨 `models/` folder contains the best model(**best_model_DistilBertForSequenceClassification_1e-05.bin**) and a quantized model (**quantized_best_model.pt**).
+
+🚨 `notebooks/` contains all the notebooks which has been used in this project.
+
+🚨 `output/` contains all metadata information regarding each training run. 
+
+🚨 `app.py` contains deployment code using FastAPI and Gradio.
+
+🚨 `configuration.py` contains project configuration including model hyperparameters.
+
+🚨 `create_light_model.py` script to convert our the **best_model_DistilBertForSequenceClassification_1e-05.bin** to a lite model. So that I can use it for cloud deployment **quantized_best_model.pt**.
+
+🚨 `DockerFile` contains information about the docker container.
+
+🚨 `task-definition.json` contain my own task-definition information. Which can be use to create AWS ECS service.
+
 
 ## [Contributors](#contributors)
 [Akhyar Ahmed](https://akhyar-ahmed.github.io/portfolio/)
