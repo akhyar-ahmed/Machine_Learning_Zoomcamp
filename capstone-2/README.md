@@ -45,7 +45,7 @@ The Trans4News project aims to implement a multiclass news classifier using adva
 
 Credit: [Bing Chat](https://www.bing.com/?FORM=Z9FD1)
 
-There's nothing much to tune for such architecture model. I first tried scheduling to adjust learning-rate dynamically but I found it time consuming so I only stick with some static learning rates to tune. Another thing is, I also tried by adding a dropout layer before calculating the final outputs. But found that the result don't change much. So I also remove that part from final training.`trans4news-multiclass-news-classifier.ipynb` file has everything written step by step. I implemented early-stopping technique on validation-loss, summarywriting from tensorboard to minitor the model results, and also model checkpointing to get the best model on the base of validation loss. Which means Validation-loss defines the perforfence of the best model for each architecture. After the training DistilBertForSequenceClassifier show better result. So I stick with that architecture for furthure proceeding. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(`class_labels.json`) of a news article. Finally, I containerise this application, publish it to docker-hub, and deployed it to cloud using AWS Fahargate, ECS, ECR.
+There's nothing much to tune for such architecture model. I first tried scheduling to adjust learning-rate dynamically but I found it time consuming so I only stick with some static learning rates to tune. Another thing is, I also tried by adding a dropout layer before calculating the final outputs. But found that the result don't change much. So I also remove that part from final training.`trans4news-multiclass-news-classifier.ipynb` file has everything written step by step. I implemented early-stopping technique on validation-loss, summarywriting from tensorboard to minitor the model results, and also model checkpointing to get the best model on the base of validation loss. Which means Validation-loss defines the perforfence of the best model for each architecture. After the training DistilBertForSequenceClassifier show better result. So I stick with that architecture for furthure proceeding. Later I convert it an anssemble everything in **train.py**. So you can follow that notebook and that script to evaluate my project. Using the best trained model I make predictions on whether it can detect the classes(`class_labels.json`) of a news article. Finally, I containerise this application, publish it to docker-hub, and deployed it to cloud using AWS Fargate, ECS, ECR.
 
 
 ## [Model Selection Process](#model-selection-process)
@@ -154,7 +154,7 @@ docker run --rm -it -p 8080:8080/tcp akhyarahmed/mlzoomcamp:projects-capstone-2.
 
 We can now make a request in exactly the same way as Step 5:
 
-```
+```bash
 python local_test.py
 ```
 ![local_test](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/dd832eb2-e9c3-4aa9-a8f2-3f11a4fffeff)
@@ -166,9 +166,28 @@ python local_test.py
 
 ### 7. Cloud Deployment
 
+After quantization the best model I deployed it into AWS. I used AWS ECR to upload the docker image, fargate to create the task, and ECS to run the task. To do all I need AWS CLI first. So first install AWS CLI from their official AWS website. Than follow the below steps:
+
 #### 7.1 AWS Configuration:
+Configure with your own aws credintials. You can find all your credintials into AWS IAM service. 
+
+```bash
+aws configure
+```
 
 
+### 7.2 Upload your docker image to AWS ECR:
+* First enable ECR and then login into ECR from your **user_id**
+```bash
+aws ecr get-login-password --region your-time-zone-region | docker login --username AWS \
+--password-stdin your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com
+```
+* Secondly build your docker image and upload it to ECR
+```bash
+docker tag your_repo_name:tags your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
+
+docker push your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
+```
 
 ## [Directory description](#directory-description)
 
@@ -177,8 +196,6 @@ python local_test.py
 🚨 `Pipfile` and `Pipfile.lock` are the used environments you can also use them.
 
 🚨 `preprocessomg.py` has all the EDA and preprocessing codes.
-
-🚨 `plots/` folder has all the figures, which were created during EDA or image content analysis.
 
 🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can use it for cloud deployment `quantized_best_model.pt`.
 
