@@ -157,6 +157,9 @@ We can now make a request in exactly the same way as Step 5:
 ```
 python local_test.py
 ```
+![local_test](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/dd832eb2-e9c3-4aa9-a8f2-3f11a4fffeff)
+
+
 
 🚨 You can use some more test data from `datasets/test.csv` file. These are unseen news. Class Index is the class number of each news. So you can test with these news and match the results with the predicted result with the help of `class_label.json`.
 
