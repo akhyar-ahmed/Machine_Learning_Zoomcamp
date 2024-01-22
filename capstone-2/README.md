@@ -292,6 +292,9 @@ aws ecs delete-cluster --cluster your-cluster-name
 
 🚨 `train.py` contains code to train and evaluate the best model.
 
+
+🚨 `local_test.py` codes to predict locally. A sample data format is given inside the code. Please use the same data format if you want to test it with some other data.
+
 🚨 `datasets/` folder contains AG-dataset, both train.csv and test.csv.
 
 🚨 `models/` folder contains the best model(**best_model_DistilBertForSequenceClassification_1e-05.bin**) and a quantized model (**quantized_best_model.pt**).
