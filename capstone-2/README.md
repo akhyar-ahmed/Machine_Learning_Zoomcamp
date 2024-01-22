@@ -177,7 +177,7 @@ python local_test.py
 
 🚨 `plots/` folder has all the figures, which were created during EDA or image content analysis.
 
-🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can use it for cloud deployment.
+🚨 `create_light_model.py` script to convert our the best_model.h5 to the best_model.tflite. So that I can use it for cloud deployment `quantized_best_model.pt`.
 
 🚨 `models/` you can find the tflite model their.
 
