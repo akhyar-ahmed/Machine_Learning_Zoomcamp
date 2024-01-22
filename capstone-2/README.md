@@ -175,6 +175,7 @@ Configure with your own aws credintials. You can find all your credintials into 
 aws configure
 ```
 
+![aws_config](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/ac9b45a7-1be0-4b3e-a617-38d6aff4b5f6)
 
 ### 7.2 Upload your docker image to AWS ECR:
 * First enable ECR and then login into ECR from your **user_id**
@@ -188,6 +189,9 @@ docker tag your_repo_name:tags your-aws-user-id.dkr.ecr.your-time-zone-region.am
 
 docker push your-aws-user-id.dkr.ecr.your-time-zone-region.amazonaws.com/your-aws-registry-name:tags
 ```
+
+![aws_login_docker_tag_push](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/b0143af2-2957-4931-ad54-06ef6df7af65)
+
 
 ## [Directory description](#directory-description)
 
