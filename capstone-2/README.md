@@ -242,6 +242,8 @@ aws ecs create-cluster --cluster-name your-cluster-name
 aws ecs register-task-definition --cli-input-json file://your-task-definition-file-path/your-task-definition-file-name.json
 ```
 
+![aws_register_task_definition](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/30471a1c-9fcc-475a-90d1-a687b433d5f3)
+
 
 ## [Directory description](#directory-description)
 
