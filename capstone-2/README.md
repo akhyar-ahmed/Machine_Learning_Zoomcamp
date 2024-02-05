@@ -8,6 +8,7 @@
 - [Directory description](#directory-description)
 - [Contributors](#contributors)
 - [Acknowledgments](#acknowledgments)
+- [Evaluation Feedback](#evaluation-feedback)
 
 ## [Project Overview & Dataset](#project-overview-dataset)
 
@@ -320,3 +321,6 @@ aws ecs delete-cluster --cluster your-cluster-name
 ## [Acknowledgments](#acknowledgments)
 * [Alexey Grigorev](https://github.com/alexeygrigorev)
 * [DataTalks.Club](https://datatalks.club/)
+
+## [Evaluation Feedback](#feedbacks)
+![feedback](https://github.com/akhyar-ahmed/Machine_Learning_Zoomcamp/assets/26096858/1772fef0-108b-4a86-84d3-00c7b0152473)
